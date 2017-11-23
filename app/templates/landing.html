@@ -3,6 +3,15 @@
 </section>
 <section class="selling-points container clearfix">
   <div class="point">
-      <button ng-click="$ctrl.StartPauseTime()" ng-bind="$ctrl.state"></button>
+      <span ng-show="!$ctrl.onBreak">
+        <button ng-click="$ctrl.StartPauseTime()" ng-bind="$ctrl.state"></button>
+      </span>
+      <span ng-show="$ctrl.onBreak && $ctrl.state=='Start'">
+        <button ng-click="$ctrl.StartPauseTime()" ng-bind="$ctrl.onBreakLabel"></button>
+      </span>
+      <span ng-show="$ctrl.onBreak && $ctrl.state=='Start Over'">
+        <button ng-click="$ctrl.StartPauseTime()" ng-bind="$ctrl.onBreakRestartLabel"></button>
+      </span>
+
     <span>{{$ctrl.time}}</span>
   </div>
