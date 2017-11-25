@@ -13,5 +13,5 @@
         <button ng-click="$ctrl.StartPauseTime()" ng-bind="$ctrl.onBreakRestartLabel"></button>
       </span>
 
-    <span>{{$ctrl.time}}</span>
+    <span>{{$ctrl.time | timecode}}</span>
   </div>
