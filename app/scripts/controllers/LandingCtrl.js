@@ -3,16 +3,17 @@
     var $ctrl = this;
     $ctrl.time = 10;
     $ctrl.StartPauseTime = StartPauseTime;
-    $ctrl.StartTime = StartTime;
+    $ctrl.StartTimer = StartTimer;
     $ctrl.state = 'Start';
     $ctrl.RestartTimer = RestartTimer;
     $ctrl.onBreak = false;
     $ctrl.onBreakLabel = 'On Break';
-    $ctrl.onBreakRestartLabel = 'On Break - Click to Start New Work Session'
+    $ctrl.onBreakRestartLabel = 'On Break - Click to Start New Work Session';
+    $ctrl.breakCount = 1;
 
     function StartPauseTime(){
       if ($ctrl.state == 'Start'){
-        StartTime();
+        StartTimer();
       }
 
       else if($ctrl.state == 'Start Over'){
@@ -20,15 +21,24 @@
       }
     }
 
-    function StartTime(){
+    function StartTimer(){
       timer = $interval(function() {
           $ctrl.state = 'Start Over';
 
           $ctrl.time = $ctrl.time - 1;
-          if($ctrl.time == 0 && !$ctrl.onBreak) {
+          if($ctrl.time == 0 && !$ctrl.onBreak && $ctrl.breakCount < 4) {
             $interval.cancel(timer);
             $ctrl.state = 'Start';
             $ctrl.time = 5;
+            $ctrl.breakCount++;
+            $ctrl.onBreak = true;
+            console.log($ctrl.breakCount);
+          }
+          else if($ctrl.time == 0 && !$ctrl.onBreak && $ctrl.breakCount == 4){
+            $interval.cancel(timer);
+            $ctrl.state = 'Start';
+            $ctrl.time = 30;
+            $ctrl.breakCount = 1;
             $ctrl.onBreak = true;
           }
           else if ($ctrl.time == 0 && $ctrl.onBreak){
