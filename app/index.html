@@ -10,11 +10,29 @@
 <body class="landing">
   <ui-view></ui-view>
 
+  <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAkppyVGtoDEvFSg_TIx7jS5DmLzOtOtJk",
+      authDomain: "bloctime-3a71b.firebaseapp.com",
+      databaseURL: "https://bloctime-3a71b.firebaseio.com",
+      projectId: "bloctime-3a71b",
+      storageBucket: "bloctime-3a71b.appspot.com",
+      messagingSenderId: "339086047600"
+    };
+    firebase.initializeApp(config);
+  </script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.0/buzz.min.js"></script>
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
     <script src="/scripts/app.js"></script>
     <script src="/scripts/controllers/LandingCtrl.js"></script>
     <script src="/scripts/filters/timecode.js"></script>
+    <script src="/scripts/tasks.js"></script>
 </body>
 </html>

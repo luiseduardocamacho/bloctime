@@ -1,6 +1,24 @@
-<section class="hero-content">
+<section>
   <h1>Bloc Time</h1>
 </section>
+<section>
+  <h1>Task History</h1>
+</section>
+<section>
+  <form class="form-group" ng-submit="tasks.addTask(text)">
+    <label for="task">Task</label>
+    <input ng-model="text" type="text" class="form-control"/>
+    <br />
+  			<button type="submit" id="task-button">Add Task</button><br /><br />
+  </form>
+</section>
+
+<section>
+  <ul ng-repeat="task in tasks.all | orderBy:' -timestamp'">
+ 	  <li>{{task.list}}</li><br />
+  </ul>
+</section>
+
 <section class="selling-points container clearfix">
   <div class="point">
       <span ng-show="!$ctrl.onBreak">

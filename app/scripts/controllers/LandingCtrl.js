@@ -1,5 +1,6 @@
 (function(){
-  function LandingCtrl($interval, $scope){
+  function LandingCtrl($interval, $scope, Tasks){
+    $scope.tasks = Tasks;
     var $ctrl = this;
     var mySound = new buzz.sound( "assets/music/ElevatorDing", {
         formats:['mp3'],
@@ -15,8 +16,9 @@
     $ctrl.onBreakRestartLabel = 'On Break - Click to Start New Work Session';
     $ctrl.breakCount = 1;
 
-
     $scope.dingMonitor = false;
+
+
 
 
     $scope.$watch('dingMonitor', function() {
@@ -43,7 +45,7 @@
           $ctrl.time = $ctrl.time - 1;
           if($ctrl.time == 0 && !$ctrl.onBreak && $ctrl.breakCount < 4) {
             $interval.cancel(timer);
-            $scope.dingMonitor = true
+            $scope.dingMonitor = true;
             $ctrl.state = 'Start';
             $ctrl.time = 3;
             $ctrl.breakCount++;
@@ -52,7 +54,7 @@
           }
           else if($ctrl.time == 0 && !$ctrl.onBreak && $ctrl.breakCount == 4){
             $interval.cancel(timer);
-            $scope.dingMonitor = true
+            $scope.dingMonitor = true;
             $ctrl.state = 'Start';
             $ctrl.time = 18;
             $ctrl.breakCount = 1;
@@ -60,7 +62,7 @@
           }
           else if ($ctrl.time == 0 && $ctrl.onBreak){
             $interval.cancel(timer);
-            $scope.dingMonitor = true
+            $scope.dingMonitor = true;
             $ctrl.state = 'Start';
             $ctrl.time = 15;
             $ctrl.onBreak = false;
